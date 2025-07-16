@@ -497,6 +497,7 @@ class PKECPropertyStore(
 
         while (subPhaseId < subPhaseFinalizationOrder.length) {
             var continueCycles = false
+//            var stillNeeded = Array
             do {
                 var continueFallbacks = false
                 do {
@@ -521,6 +522,15 @@ class PKECPropertyStore(
             subPhaseId += 1
 
             ps(AnalysisKeyId).clear()
+            /*    for(elem <- initialQueues){
+                val it = elem.iterator()
+                while(it.hasNext){
+                    it.
+                }
+
+            }
+            stillNeeded =*/
+            // TODO: hier ergänzen/auslagern/dran arbeiten zum aufräumen @Fabian
         }
 
         idle = true

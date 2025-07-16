@@ -493,8 +493,8 @@ runProjectDependencyGeneration := {
   val s: TaskStreams = streams.value
 
   val dockerUserArg = Try {
-    val uid = "id -u".!!.stripSuffix("\n").toString().trim()
-    val gid = "id -g".!!.stripSuffix("\n").toString().trim()
+    val uid = "id -u".!!.stripSuffix("\n").trim()
+    val gid = "id -g".!!.stripSuffix("\n").trim()
     s"-u $uid:$gid"
   }.getOrElse("")
 
@@ -515,3 +515,10 @@ ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
 Test / publishArtifact := false
 ThisBuild / publishTo := sonatypePublishToBundle.value
 ThisBuild / pomExtra := MavenPublishing.pomNodeSeq()
+
+
+/******
+ * Settings set for benchmarking, allowing for generating heapdumps
+ ******/
+
+fork / run := true

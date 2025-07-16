@@ -815,6 +815,8 @@ final class PKESequentialPropertyStore protected (
                     dependers(pk.id) == null // <= we are really done
                 }
                 subPhaseId += 1
+
+                //TODO: hier aufräumen? @Fabian
             }
             if (debug && continueComputation && !tasksManager.isEmpty) {
                 trace(

@@ -5,4 +5,4 @@ package fpcf
 case class PhaseConfiguration[A](
     propertyKinds: PropertyKindsConfiguration,
     scheduled:     List[ComputationSpecification[A]]
-)
+) //TODO: ggf aufbohren mit "zu behalten" oder "zu löschen" @Fabian
