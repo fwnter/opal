@@ -19,7 +19,7 @@ import org.opalj.util.PerformanceEvaluation.time
  * @author Michael Eichberg
  */
 class AnalysisScenario[A](val ps: PropertyStore) {
-
+    //TODO: hier in/nach den Phasen berechnen
     private[this] var scheduleComputed: Boolean = false
 
     private[this] var allCS: Set[ComputationSpecification[A]] = Set.empty
