@@ -20,6 +20,7 @@ import org.opalj.util.PerformanceEvaluation.time
  */
 class AnalysisScenario[A](val ps: PropertyStore) {
     //TODO: hier in/nach den Phasen berechnen
+    //hier werden analysen hinzugefügt
     private[this] var scheduleComputed: Boolean = false
 
     private[this] var allCS: Set[ComputationSpecification[A]] = Set.empty
@@ -286,7 +287,7 @@ class AnalysisScenario[A](val ps: PropertyStore) {
 
             val schedulingStrategy = instantiateSchedulingStrategy(config.getString(AnalysisScheduleStrategyKey))
             OPALLogger.info("scheduler", s"scheduling strategy ${schedulingStrategy} is selected")
-
+//TODO: hier wird schedule berechnet @Fabian
             schedulingStrategy.schedule(ps, allCS)
         } { t => OPALLogger.info("scheduler", s"computation of schedule took ${t.toSeconds}") }
 

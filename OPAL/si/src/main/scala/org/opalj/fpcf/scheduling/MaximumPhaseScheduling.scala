@@ -18,7 +18,7 @@ import org.opalj.log.OPALLogger
  */
 
 abstract class MaximumPhaseScheduling extends SchedulingStrategy {
-
+//TODO: hier ggf. reingucken @Fabian
     override def schedule[A](ps: PropertyStore, allCS: Set[ComputationSpecification[A]])(implicit
         config:     Config,
         logContext: LogContext

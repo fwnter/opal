@@ -267,7 +267,7 @@ lazy val `BytecodeDisassembler` = (project in file("OPAL/da"))
 
 lazy val bc = `BytecodeCreator`
 lazy val `BytecodeCreator` = (project in file("OPAL/bc"))
-  .settings(buildSettings: _*)
+  .settings(buildSettings *)
   .settings(
     name := "Bytecode Creator",
     Compile / doc / scalacOptions ++= Opts.doc.title("OPAL - Bytecode Creator")
@@ -522,3 +522,5 @@ ThisBuild / pomExtra := MavenPublishing.pomNodeSeq()
  ******/
 
 fork / run := true
+
+//TODO: https://github.com/azolotko/sbt-jfr @Fabian

@@ -77,7 +77,7 @@ import org.opalj.util.Seconds
  * @author Tobias Roth
  */
 object Immutability {
-
+//
     sealed trait Analyses
     case object Assignability extends Analyses
     case object Fields extends Analyses
@@ -688,7 +688,7 @@ object Immutability {
             | [-resultFolder <folder for the result files>]
             | [-closedWorld] (uses closed world assumption, i.e. no class can be extended)
             | [-noJDK] (running without the JDK)
-            | [-callGraph <CHA|RTA|XTA|PointsTo> (Default: RTA)
+            | [-callGraph <CHA|RTA|XTA|PointsTo> (Default: RTA) //pointsto nehmen für mehr Speicher @Fabian
             | [-level] <0|1|2> (domain level  Default: 2)
             | [-withoutConsiderGenericity]
             | [-withoutConsiderLazyInitialization]
