@@ -3,9 +3,9 @@ package org.opalj
 package fpcf
 
 import com.typesafe.config.Config
-
 import org.opalj.fpcf.AnalysisScenario.AnalysisAutoConfigKey
 import org.opalj.fpcf.AnalysisScenario.AnalysisSchedulingStrategyKey
+import org.opalj.fpcf.AnalysisScenario.DisableCleanupKey
 import org.opalj.fpcf.scheduling.CleanupSpec
 import org.opalj.fpcf.scheduling.SchedulingStrategy
 import org.opalj.graphs.Graph
@@ -290,13 +290,15 @@ class AnalysisScenario[A](val ps: PropertyStore) {
             val schedulingStrategy = getObjectReflectively[SchedulingStrategy](strategyClass, this, "scheduler").get
             OPALLogger.info("scheduler", s"scheduling strategy ${schedulingStrategy} is selected")
 
+            val disableCleanup = config.hasPath(DisableCleanupKey) && config.getBoolean(DisableCleanupKey)
+
             schedulingStrategy.schedule(ps, allCS)
         } { t => OPALLogger.info("scheduler", s"computation of schedule took ${t.toSeconds}") }
 
         Schedule(
             scheduledBatches,
             initializationData,
-            Some(CleanupSpec())
+            Some(CleanupSpec(disable = disableCleanup))
         )
     }
 }
@@ -307,7 +309,7 @@ class AnalysisScenario[A](val ps: PropertyStore) {
 object AnalysisScenario {
 
     final val ConfigKeyPrefix = "org.opalj.fpcf.AnalysisScenario."
-
+    final val DisableCleanupKey = s"${ConfigKeyPrefix}DisableCleanup"
     final val AnalysisAutoConfigKey = s"${ConfigKeyPrefix}AnalysisAutoConfig"
     final val AnalysisSchedulingStrategyKey = s"${ConfigKeyPrefix}SchedulingStrategy"
 
