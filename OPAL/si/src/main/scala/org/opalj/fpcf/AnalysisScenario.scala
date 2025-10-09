@@ -231,7 +231,7 @@ class AnalysisScenario[A](val ps: PropertyStore) {
         } else {
             scheduleComputed = true
         }
-
+        var disableCleanup = false
         val scheduledBatches = if (allCS.isEmpty) List.empty
         else time {
             allCS.foreach(processCS)
@@ -290,7 +290,7 @@ class AnalysisScenario[A](val ps: PropertyStore) {
             val schedulingStrategy = getObjectReflectively[SchedulingStrategy](strategyClass, this, "scheduler").get
             OPALLogger.info("scheduler", s"scheduling strategy ${schedulingStrategy} is selected")
 
-            val disableCleanup = config.hasPath(DisableCleanupKey) && config.getBoolean(DisableCleanupKey)
+            disableCleanup = config.hasPath(DisableCleanupKey) && config.getBoolean(DisableCleanupKey)
 
             schedulingStrategy.schedule(ps, allCS)
         } { t => OPALLogger.info("scheduler", s"computation of schedule took ${t.toSeconds}") }
