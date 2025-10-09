@@ -4,19 +4,17 @@ package fpcf
 package par
 
 import scala.annotation.switch
-
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.atomic.AtomicInteger
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
 import scala.util.control.ControlThrowable
-
 import com.typesafe.config.Config
-
 import org.opalj.control.foreachWithIndex
 import org.opalj.fpcf.PropertyKey.fallbackPropertyBasedOnPKId
 import org.opalj.log.LogContext
+import org.opalj.util.PerformanceEvaluation.memory
 
 /**
  * Yet another parallel property store.
@@ -522,7 +520,9 @@ class PKECPropertyStore(
             ps(AnalysisKeyId).clear()
         }
 
-        clearObsoletePropertyKinds()
+        memory {
+            clearObsoletePropertyKinds()
+        }(memory => println(s"cleared $memory bits"))
         idle = true
     }
 
